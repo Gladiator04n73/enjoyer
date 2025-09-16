@@ -36,9 +36,9 @@ end
 
 
 # @return [String, nil]
-  def student_id
-    return @student_id if defined? @student_id
-    @student_id = generate_student_id(first_name, last_name, middle_name)
+  def id
+    return @id if defined? @id
+    @id = generate_student_id(first_name, last_name, middle_name)
   end
 
   # Генерируем идентификатор зачетки.
@@ -56,5 +56,5 @@ end
 
 
 end
-a=Student.new
-p a.generate_student_id(nil, nil, nil)
+a=Student.new.id
+p a
