@@ -107,9 +107,20 @@ describe Inspectable do
  
     let(:instance) { OneClass.new }
     
-    describe '#method_origin' do
-    
+    describe '#chain' do
         it { expect(instance.method_origin(:kk)).to eq('OneClass#kk: публичный, определен TwoClass#kk: приватный, переопределен ThreeClass#kk: публичный, переопределен')}
+    end
+
+    describe '#first_chain' do
+        it { expect(instance.method_origin(:kk, :all, :first_chain)).to eq('OneClass#kk: публичный, определен')}
+    end
+
+    describe '#last_chain' do
+        it { expect(instance.method_origin(:kk, :all, :last_chain)).to eq('ThreeClass#kk: публичный, переопределен')}
+    end
+
+    describe '#private' do
+        it { expect(instance.method_origin(:kk, :private, :first_chain)).to eq('TwoClass#kk: приватный, переопределен')}
     end
 end
 

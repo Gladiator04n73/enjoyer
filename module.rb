@@ -2,8 +2,7 @@
 module Inspectable
 
     # @return [String]
-    def method_origin(method_name, visibility = :all)
-        return @result if defined? @result
+    def method_origin(method_name, visibility = :all, chain_type = :chain)
         chain = []
         @results = []
         ObjectSpace.each_object(Class) do |cls|
@@ -42,10 +41,18 @@ module Inspectable
                 output_line = "#{cls.name}##{method_name} — #{status}, #{vis}"
             end
 
-
             @results << "#{cls.name}##{method_name}: #{vis}, #{status}"
         end
-        @result = @results.join(" ")
-        return @result
+        @first_chain = @results.first || ""
+        @last_chain = @results.last || ""
+        @chain = @results.join(" ")
+        case chain_type
+        when :first_chain
+            return @result = @first_chain
+        when :last_chain
+            return @result = @last_chain
+        when :chain
+            return @result = @chain
+        end
     end
 end
