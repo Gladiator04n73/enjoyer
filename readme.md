@@ -20,7 +20,7 @@ docker run -it <название_образа> bundle exec ruby animals.rb
 
 Создаем документацию
 ```bash
-yard doc classes.rb
+docker run -it <название_образа> bundle exec yard doc classes.rb
 ```
 
 ## 4. Тестирование

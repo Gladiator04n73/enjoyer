@@ -16,7 +16,7 @@ class Animal
         attrs.each { |k, v| public_send("#{k}=", v) }
     end
 
-    # Информация о животном #{@name}.
+    # Информация о животном {#name}.
     # @return [String]
     def info
         return @message if defined? @message
